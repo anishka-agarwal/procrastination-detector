@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Procrastination Detector</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 30px;
+            background-color: #fff;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+        }
+
+        #webcam-container {
+            margin-top: 20px;
+            background-color: #f0f0f0;
+            padding: 15px;
+            display: inline-block;
+            border-radius: 12px;
+        }
+
+        #webcam-container canvas {
+            width: 224px;
+            height: 224px;
+            border: 2px solid black;
+            border-radius: 10px;
+        }
+
+        button {
+            margin-top: 20px;
+            font-size: 16px;
+            padding: 10px 20px;
+            border: 1px solid #aaa;
+            background-color: #fff;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        h2 {
+            margin-top: 30px;
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>👀 Mood Checker</h1>
+
+    <div id="webcam-container">
+        <video id="webcam" width="224" height="224" autoplay playsinline muted style="border:2px solid black; border-radius:10px;"></video>
+<canvas id="webcam-canvas" width="224" height="224" style="display:none;"></canvas>
+
+    </div>
+
+    <br>
+    <button onclick="captureAndPredict()">📸 Take Snapshot</button>
+
+    <h2 id="outputText">Click the button to check your vibe!</h2>
+
+	<!-- Focus vs Procrastination Bar -->
+<div id="bar-container" style="width: 224px; margin: 20px auto;">
+  <div style="font-size: 14px; text-align: left;">Focus: <span id="focus-percent">0%</span></div>
+  <div style="background: #ddd; border-radius: 5px; height: 12px; overflow: hidden;">
+    <div id="focus-bar" style="background: #4CAF50; width: 0%; height: 100%; transition: width 0.5s;"></div>
+  </div>
+
+  <div style="margin-top: 10px; font-size: 14px; text-align: left;">Procrastination: <span id="procrastination-percent">0%</span></div>
+  <div style="background: #ddd; border-radius: 5px; height: 12px; overflow: hidden;">
+    <div id="procrastination-bar" style="background: #F44336; width: 0%; height: 100%; transition: width 0.5s;"></div>
+  </div>
+</div>
+
+
+    <!-- TensorFlow.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.3.0/dist/tf.min.js"></script>
+
+    <!-- Teachable Machine Image Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
+
+    <!-- Your custom JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
